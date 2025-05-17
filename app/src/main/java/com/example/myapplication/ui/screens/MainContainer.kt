@@ -12,8 +12,10 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.NavHostController
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.example.myapplication.ui.AppBottomNavBar
 import com.example.myapplication.ui.AppTopBar
 import com.example.myapplication.ui.Routes
@@ -29,7 +31,7 @@ fun MainContainer(
 
     Scaffold(
         topBar = {
-            AppTopBar(drawerState = drawerState, onClickMenu = {})
+            AppTopBar(drawerState = drawerState, onClickMenu = {},   navController = navController )
         },
         bottomBar = {
             AppBottomNavBar(navController)
@@ -43,20 +45,24 @@ fun MainContainer(
             composable(route = Routes.Home.route) {
                 HomeScreen()
             }
-            composable(Routes.List.route) {
-                ListScreen(onPlanClick = { })
+            composable(Routes.Books.route) {
+                GenresScreen(navController)
             }
 
-            composable(Routes.PlanAScreen.route) {
-                PlanAScreen() // Ekran Plan A
+            composable("about_app") {
+                AboutAppScreen()
             }
 
-            composable(Routes.PlanBScreen.route) {
-                PlanBScreen() // Ekran Plan BS
+            composable(Routes.Favourites.route) {
+                FavouriteScreen()
             }
 
-            composable(Routes.PlanCScreen.route) {
-                PlanCScreen() // Ekran Plan C
+            composable(
+                route = "books/{genreId}",
+                arguments = listOf(navArgument("genreId") { type = NavType.IntType })
+            ) { backStackEntry ->
+                val genreId = backStackEntry.arguments?.getInt("genreId") ?: 0
+                BooksScreen(genreId)
             }
         }
     }
