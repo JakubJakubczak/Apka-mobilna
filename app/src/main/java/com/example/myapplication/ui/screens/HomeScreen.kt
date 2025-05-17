@@ -18,6 +18,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.myapplication.R
 import com.example.myapplication.ui.theme.MyApplicationTheme
+import androidx.compose.ui.viewinterop.AndroidView
+import android.widget.MediaController
+import android.widget.VideoView
+import androidx.compose.ui.platform.LocalContext
+import android.net.Uri
 
 @Composable
 fun HomeScreen(
@@ -42,13 +47,16 @@ fun HomeScreen(
         )
 
         // Obrazek reprezentujący tematykę książek
-        Image(
-            painter = painterResource(R.drawable.airplane),
-            contentDescription = "Grafika aplikacji",
-            modifier = Modifier
-                .width(300.dp)
-                .shadow(8.dp)
-        )
+//        Image(
+//            painter = painterResource(R.drawable.airplane),
+//            contentDescription = "Grafika aplikacji",
+//            modifier = Modifier
+//                .width(300.dp)
+//                .shadow(8.dp)
+//        )
+
+        VideoPlayer(modifier = Modifier.fillMaxWidth().height(300.dp))
+
 
         // Tekst pod obrazkiem
         Spacer(modifier = Modifier.height(16.dp))
@@ -69,4 +77,22 @@ fun HomeScreenPreview() {
     MyApplicationTheme {
         HomeScreen()
     }
+}
+
+@Composable
+fun VideoPlayer(modifier: Modifier = Modifier) {
+    val context = LocalContext.current
+    AndroidView(
+        factory = {
+            VideoView(it).apply {
+                val videoUri = Uri.parse("android.resource://${context.packageName}/raw/book_video")
+                setVideoURI(videoUri)
+                setMediaController(MediaController(context).also { controller ->
+                    controller.setAnchorView(this)
+                })
+                start()
+            }
+        },
+        modifier = modifier
+    )
 }
