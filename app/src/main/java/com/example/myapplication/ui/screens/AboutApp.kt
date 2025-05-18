@@ -27,7 +27,13 @@ fun AboutAppScreen() {
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                text = "Bookead to prosta i intuicyjna aplikacja mobilna, której celem jest pomoc w odkrywaniu wartościowych książek.\n" +
+                        "\n" +
+                        "Aplikacja została stworzona z naciskiem na czytelność, prostotę i nowoczesny wygląd oparty na Jetpack Compose.\n" +
+                        "\n" +
+                        "Autor: Jakub Jakubczak\n" +
+                        "\n" +
+                        "Wersja: 1.0\n",
                 fontSize = 16.sp,
                 textAlign = TextAlign.Center
             )

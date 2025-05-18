@@ -35,7 +35,7 @@ import androidx.compose.ui.graphics.Color
 
 @Composable
 fun BooksScreen(genreId: Int) {
-    val initialBooks = books.filter { it.genreId == genreId }
+    val initialBooks = filterBooksByGenre(books, genreId)
     var bookList by remember { mutableStateOf(initialBooks) }
 
 
@@ -94,4 +94,8 @@ fun BookCard(book: Book, onToggleFavourite: () -> Unit) {
             }
         }
     }
+}
+
+fun filterBooksByGenre(books: List<Book>, genreId: Int): List<Book> {
+    return books.filter { it.genreId == genreId }
 }

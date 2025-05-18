@@ -46,7 +46,6 @@ fun HomeScreen(
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
         )
 
-        // Obrazek reprezentujący tematykę książek
 //        Image(
 //            painter = painterResource(R.drawable.airplane),
 //            contentDescription = "Grafika aplikacji",

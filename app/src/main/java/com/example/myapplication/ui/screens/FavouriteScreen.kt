@@ -13,10 +13,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.myapplication.data.books
+import com.example.myapplication.models.Book
 
 @Composable
 fun FavouriteScreen() {
-    val favouriteBooks = books.filter { it.isFavouriteState }
+    val favouriteBooks = filterFavouriteBooks(books)
 
     if (favouriteBooks.isEmpty()) {
         Box(
@@ -52,5 +53,9 @@ fun FavouriteScreen() {
             }
         }
     }
+}
+
+fun filterFavouriteBooks(books: List<Book>): List<Book> {
+    return books.filter { it.isFavouriteState }
 }
 
